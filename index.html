@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Track Earth's health and positivity in real-time with Global Quality of Life-O-Meter. Oceans, atmosphere, happiness, and more!">
-    <meta name="keywords" content="earth health, quality of life, real-time data, oceans, happiness, peace, decentralized app">
+    <meta name="description" content="Track Earth's health and positivity in real-time with Global Quality of Life-O-Meter—interactive and awesome!">
+    <meta name="keywords" content="earth health, quality of life, real-time data, interactive globe, positivity">
     <meta name="author" content="Global Quality of Life-O-Meter Team">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#00ff88">
     <title>🌍 Global Quality of Life-O-Meter</title>
     <!-- Open Graph -->
     <meta property="og:title" content="Global Quality of Life-O-Meter">
-    <meta property="og:description" content="Visualize Earth's positivity with real-time, crowdsourced data—oceans, happiness, peace, and more!">
+    <meta property="og:description" content="Explore Earth’s positivity with a 3D globe and real-time data—oceans, happiness, peace, and more!">
     <meta property="og:url" content="https://webswiftseo.github.io/Global-Quality-of-Life-Ometer/">
     <meta property="og:type" content="website">
     <!-- Favicon -->
@@ -29,17 +29,49 @@
             line-height: 1.6;
             text-align: center;
             min-height: 100vh;
-            overflow-x: hidden;
             padding: 15px;
+            position: relative;
+            overflow-x: hidden;
         }
         h1 {
             font-size: 1.8rem;
             background: linear-gradient(90deg, #00fff0, #ff00f0);
             -webkit-background-clip: text;
             color: transparent;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         p { font-size: 1rem; color: #ccc; margin-bottom: 20px; }
+
+        /* 3D Globe */
+        #globe {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            background: radial-gradient(circle, #00ccff, #003366);
+            border-radius: 50%;
+            position: relative;
+            animation: spin 20s infinite linear;
+            cursor: pointer;
+        }
+        #globe::after {
+            content: '';
+            position: absolute;
+            top: 10%; left: 10%;
+            width: 80%; height: 80%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20 50 Q40 20 60 50 T80 50" fill="none" stroke="%23ffffff" stroke-width="2"/></svg>');
+            opacity: 0.5;
+        }
+        @keyframes spin { 100% { transform: rotateY(360deg); } }
+
+        /* Quote */
+        #quote {
+            font-size: 0.9rem;
+            color: #00ff88;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            margin-bottom: 20px;
+        }
+        @keyframes fadeIn { 100% { opacity: 1; } }
 
         /* Flashy Button */
         .flashy-btn {
@@ -56,93 +88,60 @@
             max-width: 300px;
             margin: 10px auto;
             display: block;
+            position: relative;
         }
-        .flashy-btn:hover {
-            background: linear-gradient(45deg, #ff0099, #00ccff);
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
-        }
+        .flashy-btn:hover { background: linear-gradient(45deg, #ff0099, #00ccff); box-shadow: 0 0 25px rgba(255, 0, 255, 0.7); }
 
-        /* Graph Containers */
-        .graph {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 400px;
-            background: #222;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        /* Particle Effects */
+        .particles {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 3s ease-out forwards;
         }
+        @keyframes float { 0% { opacity: 1; } 100% { opacity: 0; transform: translateY(-50px); } }
+
+        /* Graphs */
+        .graph { margin: 20px auto; width: 90%; max-width: 400px; background: #222; padding: 15px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
         .graph h2 { font-size: 1.2rem; margin-bottom: 10px; }
-
-        /* Ocean - Wave Animation */
         #oceanGraph { background: linear-gradient(135deg, #0066cc, #00ccff); }
         #oceanGraph h2 { color: #00ffcc; }
-        .ocean-bar {
-            height: 20px;
-            border-radius: 10px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0 10 Q25 0 50 10 T100 10" fill="none" stroke="%2300aaff" stroke-width="4"/></svg>'), #00aaff;
-            background-size: 100% 100%;
-            animation: wave 2s infinite;
-        }
+        .ocean-bar { height: 20px; border-radius: 10px; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0 10 Q25 0 50 10 T100 10" fill="none" stroke="%2300aaff" stroke-width="4"/></svg>'), #00aaff; background-size: 100% 100%; animation: wave 2s infinite; }
         @keyframes wave { 50% { background-position: 50% 0; } }
-
-        /* Atmosphere - Gradient Sky */
         #atmoGraph { background: linear-gradient(to top, #003366, #66ccff); }
         #atmoGraph h2 { color: #66ffcc; }
-        .atmo-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #fff 20%, #00ccff 70%);
-            margin: 0 auto;
-            transition: transform 1s ease;
-        }
-
-        /* Weather - Sun/Cloud */
+        .atmo-circle { width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle, #fff 20%, #00ccff 70%); margin: 0 auto; transition: transform 1s ease; }
         #weatherGraph { background: #ffcc00; }
         #weatherGraph h2 { color: #ff6600; }
-        .weather-icon {
-            font-size: 3rem;
-            animation: pulse 1s infinite;
-        }
+        .weather-icon { font-size: 3rem; animation: pulse 1s infinite; }
         @keyframes pulse { 50% { transform: scale(1.1); } }
-
-        /* Society - Bar Chart */
         #societyGraph { background: #444; }
         #societyGraph h2 { color: #ffaa00; }
         .society-bar { height: 20px; background: #ffaa00; border-radius: 5px; transition: width 1s ease; }
-
-        /* Happiness - Smiley */
         #happinessGraph { background: #ffdd99; }
         #happinessGraph h2 { color: #ff6699; }
         .happiness-face { font-size: 3rem; animation: bounce 1s infinite; }
         @keyframes bounce { 50% { transform: translateY(-10px); } }
-
-        /* Laughter - Waveform */
         #laughterGraph { background: #9933ff; }
         #laughterGraph h2 { color: #ff99ff; }
         .laughter-wave { height: 20px; background: linear-gradient(90deg, #ff66ff, #cc00cc); border-radius: 5px; animation: laugh 0.5s infinite; }
         @keyframes laugh { 50% { width: 90%; } }
-
-        /* Sun/Space - Orbit */
         #sunGraph { background: radial-gradient(circle, #ff6600, #000); }
         #sunGraph h2 { color: #ffcc00; }
         .sun-orbit { width: 80px; height: 80px; border: 2px dashed #ffcc00; border-radius: 50%; animation: orbit 3s infinite linear; }
         @keyframes orbit { 100% { transform: rotate(360deg); } }
-
-        /* War/Peace - Dove */
         #peaceGraph { background: #006600; }
         #peaceGraph h2 { color: #00ff00; }
         .peace-dove { font-size: 2.5rem; animation: fly 2s infinite; }
         @keyframes fly { 50% { transform: translateX(20px); } }
-
-        /* Love - Heartbeat */
         #loveGraph { background: #ff3366; }
         #loveGraph h2 { color: #ff99cc; }
         .love-heart { font-size: 3rem; animation: beat 1s infinite; }
         @keyframes beat { 50% { transform: scale(1.2); } }
 
-        /* Social Links & Footer */
+        /* Social & Footer */
         .social-links { margin: 20px 0; }
         .social-links a { color: #00ffcc; font-size: 1.8rem; margin: 0 10px; transition: all 0.3s ease; }
         .social-links a:hover { color: #ff00cc; text-shadow: 0 0 15px #ff00cc; }
@@ -154,12 +153,15 @@
             h1 { font-size: 2.5rem; }
             .flashy-btn { width: auto; padding: 15px 35px; }
             .graph { width: 70%; }
+            #globe { width: 200px; height: 200px; }
         }
     </style>
 </head>
 <body>
     <h1>🌍 Global Quality of Life-O-Meter</h1>
-    <p>Earth’s positivity shines—updated live every second, minute, and hour!</p>
+    <p>Earth’s positivity shines—explore it live!</p>
+    <div id="globe" title="Click to explore"></div>
+    <div id="quote"></div>
 
     <!-- Graphs -->
     <div class="graph" id="oceanGraph"><h2>Ocean Vitality</h2><div class="ocean-bar" style="width: 80%;"></div></div>
@@ -199,11 +201,7 @@
         const shareBtn = document.getElementById('shareBtn');
         const status = document.getElementById('status');
         shareBtn.addEventListener('click', async () => {
-            const shareData = {
-                title: 'Global Quality of Life-O-Meter',
-                text: '🌍 Celebrate Earth’s positivity in real-time—join the movement!',
-                url: window.location.href
-            };
+            const shareData = { title: 'Global Quality of Life-O-Meter', text: '🌍 Celebrate Earth’s positivity—join the movement!', url: window.location.href };
             if (navigator.share) {
                 try {
                     await navigator.share(shareData);
@@ -217,6 +215,38 @@
             setTimeout(() => status.textContent = '', 3000);
         });
 
+        // Particle Effects
+        function spawnParticles(x, y, color) {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particles';
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.background = color;
+                particle.style.transform = `translate(${Math.random() * 60 - 30}px, ${Math.random() * 60 - 30}px)`;
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 3000);
+            }
+        }
+
+        // Globe Interaction
+        const globe = document.getElementById('globe');
+        globe.addEventListener('click', (e) => {
+            spawnParticles(e.clientX, e.clientY, '#00ccff');
+            status.textContent = '🌍 Exploring Earth’s positivity!';
+            setTimeout(() => status.textContent = '', 3000);
+        });
+
+        // Daily Quote
+        const quotes = [
+            "The Earth laughs in flowers. – Emerson",
+            "Peace begins with a smile. – Mother Teresa",
+            "Love is the bridge between all hearts. – Rumi"
+        ];
+        const quoteDiv = document.getElementById('quote');
+        const today = new Date().getDate();
+        quoteDiv.textContent = quotes[today % quotes.length];
+
         // Live Data Updates
         const contributeBtn = document.getElementById('contributeBtn');
         const graphs = {
@@ -227,32 +257,25 @@
         };
 
         function updateGraphs() {
-            // Every Second (Fast Fluctuations)
+            setInterval(() => { graphs.laughter.style.width = `${Math.random() * 20 + 70}%`; }, 1000);
             setInterval(() => {
-                graphs.laughter.style.width = `${Math.random() * 20 + 70}%`; // Laughter waves
-            }, 1000);
-
-            // Every Minute (Moderate Changes)
-            setInterval(() => {
-                graphs.ocean.style.width = `${Math.random() * 20 + 70}%`; // Ocean vitality
-                graphs.society.style.width = `${Math.random() * 20 + 65}%`; // Society strength
+                graphs.ocean.style.width = `${Math.random() * 20 + 70}%`;
+                graphs.society.style.width = `${Math.random() * 20 + 65}%`;
             }, 60000);
-
-            // Every Hour (Slower Trends)
             setInterval(() => {
                 const scale = Math.random() * 0.2 + 0.9;
-                graphs.atmo.style.transform = `scale(${scale})`; // Atmosphere clarity
+                graphs.atmo.style.transform = `scale(${scale})`;
             }, 3600000);
         }
 
-        contributeBtn.addEventListener('click', () => {
+        contributeBtn.addEventListener('click', (e) => {
+            spawnParticles(e.clientX, e.clientY, '#ff66ff');
             status.textContent = '🌱 Your positivity boosted Earth’s score!';
             graphs.ocean.style.width = `${Math.min(95, parseFloat(graphs.ocean.style.width) + 5)}%`;
             graphs.society.style.width = `${Math.min(90, parseFloat(graphs.society.style.width) + 5)}%`;
             setTimeout(() => status.textContent = '', 3000);
         });
 
-        // Start Live Updates
         updateGraphs();
     </script>
 </body>
