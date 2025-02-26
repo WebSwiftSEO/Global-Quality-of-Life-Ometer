@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laser Modern Sharing App</title>
+    <meta name="description" content="A laser-modern sharing app with native sharing and flashy social links.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background & Font */
+        body {
+            background: radial-gradient(circle, #0f0f0f, #000);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00fff0, #ff00f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* Flashy Button */
+        .flashy-btn {
+            background: linear-gradient(45deg, #00ff88, #00aaff);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            transition: 0.3s ease;
+            margin: 10px;
+        }
+
+        .flashy-btn:hover {
+            background: linear-gradient(45deg, #ff0099, #00ccff);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+        }
+
+        /* Social Links */
+        .social-links {
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            color: #00ffcc;
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff00cc;
+            text-shadow: 0 0 20px #ff00cc;
+        }
+
+        /* Share Status */
+        #shareStatus {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #00ff88;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .flashy-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌐 Quality of Life-O-Meter 🌿</h1>
+
+    <p>Track the Earth's health and all life—real-time, decentralized, no APIs needed.</p>
+
+    <button class="flashy-btn" id="shareBtn">🚀 Share This App</button>
+
+    <div id="shareStatus"></div>
+
+    <!-- Flashy Social Links -->
+    <div class="social-links">
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <footer>
+        Made with ❤️ for the Planet | © 2025 Quality of Life-O-Meter
+    </footer>
+
+    <!-- JavaScript for Native Sharing -->
+    <script>
+        const shareBtn = document.getElementById('shareBtn');
+        const shareStatus = document.getElementById('shareStatus');
+
+        shareBtn.addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Quality of Life-O-Meter',
+                        text: '🌎 Check out the real-time Quality of Life-O-Meter and track the health of Earth and all life!',
+                        url: window.location.href
+                    });
+                    shareStatus.textContent = '✅ Thanks for sharing!';
+                } catch (err) {
+                    shareStatus.textContent = '❌ Share canceled.';
+                }
+            } else {
+                shareStatus.textContent = '⚠️ Native sharing not supported on this browser.';
+            }
+        });
+    </script>
+
+</body>
+</html>
